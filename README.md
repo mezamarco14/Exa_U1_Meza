@@ -16,13 +16,13 @@
 ![Captura del login](1.png)  
 
 **Descripción:**  
-Se implementó un inicio de sesión ficticio sin base de datos, utilizando credenciales predefinidas. El sistema valida usuario y contraseña, genera un token de sesión simulado y lo guarda en `localStorage`. Esto permite acceder a las funcionalidades del sistema sin necesidad de un servidor real.  
+Se implementó un motor de IA local avanzado que analiza inteligentemente el nombre de cada activo bancario para generar evaluaciones de riesgo específicas y recomendaciones de tratamiento alineadas con ISO 27001. El sistema utiliza mapeo de patrones y coincidencias inteligentes para identificar el tipo de activo y proporcionar evaluaciones contextualizadas basadas en mejores prácticas de seguridad bancaria, incluyendo probabilidad de riesgo, impacto potencial y controles de mitigación específicos.
 
 ---
 
 ### Motor de Inteligencia Artificial  
 **Evidencia:**  
-![Captura del código de IA](ruta/de/tu/captura-codigo-ia.png)  
+![Captura del código de IA](2.png)  
 
 **Descripción:**  
 Se mejoró el motor de IA integrando un módulo que analiza activos de información y genera automáticamente perfiles de riesgo, impactos y recomendaciones de mitigación basadas en ISO 27001. El sistema asigna un nivel de riesgo (bajo, medio o alto) según criterios definidos y presenta las recomendaciones al auditor.  
@@ -33,71 +33,75 @@ Se mejoró el motor de IA integrando un módulo que analiza activos de informaci
 
 ### Activo 1: Servidor de Base de Datos  
 **Evidencia:**  
-![Captura activo 1](ruta/de/tu/captura1.png)  
+![Captura activo 1](3.png)  
 
 **Condición:**  
-Se encontró que las conexiones al servidor no están cifradas, lo cual expone datos sensibles.  
+El servidor de base de datos contiene información financiera y personal sensible de clientes sin medidas adecuadas de protección. Se identificó falta de cifrado de datos en reposo, controles de acceso insuficientes y ausencia de monitoreo continuo de accesos a información crítica.
 
 **Recomendación:**  
-Implementar cifrado TLS en todas las conexiones y restringir accesos solo a direcciones IP autorizadas.  
+Implementar cifrado AES-256 para datos sensibles, establecer controles de acceso basados en roles (RBAC), implementar sistema de monitoreo y alertas de acceso a datos críticos, y realizar auditorías periódicas de acceso.
 
-**Riesgo:** Alta  
+**Riesgo:** Probabilidad Alta - Los datos bancarios son objetivo prioritario de ciber atacantes y las vulnerabilidades presentes son fácilmente explotables mediante técnicas conocidas. 
 
 ---
 
 ### Activo 2: API de Transacciones  
 **Evidencia:**  
-![Captura activo 2](ruta/de/tu/captura2.png)  
+![Captura activo 2](4.png)  
 
 **Condición:**  
-La API no cuenta con limitación de peticiones (rate limiting), lo que puede permitir ataques de denegación de servicio.  
+La API de transacciones presenta vulnerabilidades críticas que incluyen falta de autenticación multifactor, validación insuficiente de entradas, ausencia de limitación de tasa (rate limiting) y falta de cifrado end-to-end en las transacciones financieras.
 
 **Recomendación:**  
-Configurar políticas de rate limiting y autenticación robusta mediante tokens de corta duración.  
+Implementar autenticación multifactor (MFA) para las transacciones, validación estricta de entradas según estándares OWASP, limitación de tasa por cliente/IP, implementar firma digital de transacciones y cifrado TLS 1.3 para las comunicaciones.
 
-**Riesgo:** Media  
+**Riesgo:** 
+Probabilidad Alta - Las APIs de transacciones son objetivos prioritarios de atacantes debido al potencial de ganancia financiera inmediata mediante técnicas de inyección, manipulación de transacciones y fraudes.
 
 ---
 
 ### Activo 3: Aplicación Web de Banca  
 **Evidencia:**  
-![Captura activo 3](ruta/de/tu/captura3.png)  
+![Captura activo 3](5.png)  
 
 **Condición:**  
-No se encontró protección contra ataques de inyección SQL en algunos formularios.  
+La aplicación web presenta múltiples vulnerabilidades de seguridad incluyendo Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF), posibles vulnerabilidades de inyección, cookies sin flags de seguridad adecuados, y falta de políticas de seguridad de contenido (CSP). Además, se detectó que el tratamiento recomendado ("Implementación de controles de acceso físico") no es apropiado para una aplicación web.
 
 **Recomendación:**  
-Implementar validación estricta de entradas y uso de consultas parametrizadas.  
+Implementar Content Security Policy (CSP), sanitización exhaustiva de entradas de usuario, tokens CSRF para formularios, cookies con flags Secure, HttpOnly y SameSite, implementar Web Application Firewall (WAF), y realizar pruebas regulares de penetración y análisis estático de código.
 
-**Riesgo:** Alta  
+**Riesgo:**   
+Probabilidad Alta - Las aplicaciones web bancarias son objetivos prioritarios de atacantes debido al acceso directo a información financiera sensible. Vulnerabilidades como XSS y CSRF son explotables mediante técnicas ampliamente conocidas y pueden comprometer las cuentas de usuarios.
 
 ---
 
 ### Activo 4: Firewall Perimetral  
 **Evidencia:**  
-![Captura activo 4](ruta/de/tu/captura4.png)  
+![Captura activo 4](6.png)  
 
 **Condición:**  
-Las reglas del firewall no están actualizadas, permitiendo tráfico innecesario desde redes externas.  
+El servidor de correo presenta configuraciones de seguridad insuficientes que incluyen falta de implementación completa de protocolos DMARC, DKIM y SPF, contraseñas débiles en cuentas de correo, ausencia de filtrado avanzado antiphishing, y falta de cifrado robusto en las comunicaciones. Además, el tratamiento recomendado ("Monitoreo continuo de accesos") es insuficiente para abordar las vulnerabilidades identificadas.
 
 **Recomendación:**  
-Revisar y actualizar las políticas de firewall regularmente, aplicando el principio de mínimo privilegio.  
+Implementar y configurar correctamente DMARC, DKIM y SPF para prevenir suplantación de identidad, establecer políticas de contraseñas robustas con autenticación multifactor, implementar solución avanzada de filtrado antiphishing, configurar cifrado TLS forzado para las comunicaciones, y realizar capacitación continua contra phishing para los usuarios.
 
-**Riesgo:** Media  
+**Riesgo:**   
+Probabilidad Alta - Los servidores de correo son vectores de ataque críticos debido a su uso para phishing, distribución de malware y exfiltración de información. Las configuraciones inadequadas permiten fácilmente suplantación de identidad y compromiso de cuentas.
 
 ---
 
 ### Activo 5: Backup en NAS  
 **Evidencia:**  
-![Captura activo 5](ruta/de/tu/captura5.png)  
+![Captura activo 5](7.png)  
 
 **Condición:**  
-Los respaldos no cuentan con cifrado en reposo.  
+El firewall perimetral presenta configuraciones de seguridad deficientes que incluyen reglas obsoletas y excesivamente permisivas, falta de segmentación de red adecuada, ausencia de actualizaciones regulares de firmware, monitoreo insuficiente de tráfico de red, y falta de pruebas de penetración regulares. Además, el tratamiento recomendado ("Capacitación de personal sobre seguridad") es inapropiado para vulnerabilidades técnicas de firewall.
 
 **Recomendación:**  
-Configurar cifrado AES-256 para los respaldos almacenados en NAS y establecer controles de acceso.  
+Realizar auditoría y limpieza completa de las reglas del firewall, implementar segmentación de red (network segmentation) para aislar zonas críticas, establecer programa regular de actualizaciones de firmware, implementar monitoreo continuo y SIEM para detección de anomalías, y realizar pruebas de penetración periódicas del perímetro de red.
 
-**Riesgo:** Alta  
+**Riesgo:**   
+Probabilidad Media-Alta - El firewall es la primera línea de defensa del perímetro de red. Configuraciones deficientes permiten acceso no autorizado, pero requieren cierto nivel de expertise para explotación. El impacto potencial es extremadamente alto ya que compromete los sistemas internos.
 
 ---
 
