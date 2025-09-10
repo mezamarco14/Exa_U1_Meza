@@ -2,7 +2,9 @@
 # Informe de Auditoría de Sistemas - Examen de la Unidad I
 
 **Nombres y apellidos:**  Jean Marco Meza Noalcca
+
 **Fecha:**  10/09/2025
+
 **URL GitHub:**  https://github.com/mezamarco14/Exa_U1_Meza
 
 ---
